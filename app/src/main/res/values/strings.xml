@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">WishGraphMobile</string>
+    <string name="app_name">Wish NFT</string>
+    <string name="logo">NFT you wish</string>
+    <string name="hint_wallet">Enter wallet</string>
+    <string name="btn_find">Find NFT</string>
 </resources>
