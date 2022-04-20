@@ -24,12 +24,12 @@ tools:context=".MainActivity">
     android:layout_below="@+id/logo"
     android:layout_marginHorizontal="50sp"
     android:layout_marginTop="100sp"
-    android:backgroundTint="@color/colorAccent"
     android:ems="10"
     android:hint="@string/hint_wallet"
-    android:inputType="textPersonName"
     android:textColor="@color/textColorPrimary"
-    android:textColorHint="@color/textColorHint" />
+    android:textColorHint="@color/textColorHint"
+    android:background="@drawable/custom_entry"
+    android:textCursorDrawable="@drawable/entry_cursor"/>
 
 <Button
     android:id="@+id/btn_find"
