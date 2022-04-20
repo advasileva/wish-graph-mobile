@@ -23,22 +23,27 @@ tools:context=".MainActivity">
     android:layout_height="wrap_content"
     android:layout_below="@+id/logo"
     android:layout_marginHorizontal="50sp"
-    android:layout_marginTop="100sp"
+    android:layout_marginTop="50sp"
     android:ems="10"
     android:hint="@string/hint_wallet"
     android:textColor="@color/textColorPrimary"
     android:textColorHint="@color/textColorHint"
     android:background="@drawable/custom_entry"
-    android:textCursorDrawable="@drawable/entry_cursor"/>
+    android:textCursorDrawable="@drawable/entry_cursor" />
 
-<Button
-    android:id="@+id/btn_find"
-    android:layout_below="@+id/wallet_field"
-    android:layout_marginTop="50sp"
-    android:layout_marginHorizontal="130sp"
-    android:backgroundTint="@color/colorAccent"
-    android:text="@string/btn_find"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wallet_field"
+        android:layout_marginHorizontal="125sp"
+        android:layout_marginTop="50sp"
+        android:textColor="@color/colorPrimary"
+        android:padding="10dp"
+        android:text="@string/btn_find"
+        android:backgroundTint="@color/colorAccent"
+        android:background="@drawable/custom_entry"
+        android:textAllCaps="false" />
 
 </RelativeLayout>
