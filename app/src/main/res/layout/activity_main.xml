@@ -20,15 +20,17 @@ tools:context=".MainActivity">
 <EditText
     android:id="@+id/wallet_field"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="45sp"
     android:layout_below="@+id/logo"
-    android:layout_marginHorizontal="50sp"
+    android:layout_marginHorizontal="40sp"
     android:layout_marginTop="50sp"
     android:ems="10"
     android:hint="@string/hint_wallet"
     android:textColor="@color/textColorPrimary"
     android:textColorHint="@color/textColorHint"
     android:background="@drawable/custom_entry"
+    android:gravity="start"
+    android:singleLine="true"
     android:textCursorDrawable="@drawable/entry_cursor" />
 
 
@@ -50,12 +52,19 @@ tools:context=".MainActivity">
         android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test"
         android:layout_below="@+id/btn_find"
-        android:layout_marginHorizontal="125sp"
+        android:layout_marginHorizontal="80sp"
         android:layout_marginTop="50sp"
+        android:text="@string/motivation"
         android:textAlignment="center"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="30sp" />
+        android:textColor="@color/textColorSecondary"
+        android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/nft_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_find"
+        android:layout_marginHorizontal="80sp"
+        android:layout_marginTop="50sp" />
 </RelativeLayout>

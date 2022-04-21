@@ -8,6 +8,6 @@
     <padding
         android:left="25sp"
         android:top="10sp"
-        android:right="10sp"
+        android:right="25sp"
         android:bottom="10sp" />
 </shape>

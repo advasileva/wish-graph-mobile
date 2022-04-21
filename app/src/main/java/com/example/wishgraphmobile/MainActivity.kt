@@ -5,10 +5,8 @@ import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import com.squareup.picasso.Picasso
 import org.json.JSONObject
 import java.io.FileNotFoundException
 import java.net.HttpURLConnection
@@ -19,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var wallet_field: EditText? = null
     private var find_btn: Button? = null
     private var result_info: TextView? = null
+    private var image_view: ImageView? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         wallet_field = findViewById(R.id.wallet_field)
         find_btn = findViewById(R.id.btn_find)
         result_info = findViewById(R.id.result)
+        image_view = findViewById(R.id.nft_view)
 
         find_btn?.setOnClickListener {
             if(wallet_field?.text?.toString()?.trim()?.equals("")!!)
@@ -38,7 +38,15 @@ class MainActivity : AppCompatActivity() {
                 threadWithRunnable.start()
                 result_info?.text="Finding..."
                 threadWithRunnable.join()
-                result_info?.text = simpleRunnable.Text
+                val json = simpleRunnable.Text
+                val nft_array = JSONObject(json).getJSONArray("items")
+                val meta = nft_array.getJSONObject(0).getString("meta")
+                val content = JSONObject(meta).getJSONArray("content")
+                val picture_url = content.getJSONObject(0).getString("url")
+                Picasso.get()
+                    .load(picture_url)
+                    .into(image_view);
+                result_info?.text = picture_url
             }
         }
     }
