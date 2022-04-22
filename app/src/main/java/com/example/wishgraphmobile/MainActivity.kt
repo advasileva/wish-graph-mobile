@@ -41,18 +41,23 @@ class MainActivity : AppCompatActivity() {
                 threadWithRunnable.start()
                 threadWithRunnable.join()
                 result_info?.text = "Recommended NFT"
-                val json = simpleRunnable.Text
-                val nft_array: JSONArray = JSONObject(json).getJSONArray("items")
+                var json = simpleRunnable.Text
+                json = "{\"total\":100,\n\"authors\": $json\n}"
+                Log.println(Log.DEBUG, Log.DEBUG.toString(), json)
+                val nft_array: JSONArray = JSONObject(json).getJSONArray("authors")
                 val recyclerview = findViewById<RecyclerView>(R.id.nft_view)
-
                 recyclerview.layoutManager = LinearLayoutManager(this)
                 val data = ArrayList<String>()
                 try {
-                    //for (i in 0..1) {
-                            data.add(nft_array.getJSONObject(0).getString("meta"))
-                            data.add(nft_array.getJSONObject(3).getString("meta"))
-                                    //data.add(nft_array.getJSONObject(6).getString("meta"))
-                    //}
+                    for (i in 0..(nft_array.length()-1)) {
+                        data.add(
+                            nft_array.getJSONObject(i).
+                            getJSONArray("nft").
+                            getJSONObject(0).
+                            getString("url")
+                        )
+                        Log.println(Log.DEBUG, Log.DEBUG.toString(), data[0])
+                    }
                 } catch (ex: FileNotFoundException) {
                     Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
                 }
@@ -87,7 +92,7 @@ class MainActivity : AppCompatActivity() {
             } finally {
                 connection.disconnect()
             }
-            Log.println(Log.DEBUG, Log.DEBUG.toString(), "GET $text")
+            //Log.println(Log.DEBUG, Log.DEBUG.toString(), "GET $text")
         }
     }
 }

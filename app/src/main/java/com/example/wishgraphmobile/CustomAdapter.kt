@@ -27,10 +27,10 @@ class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<Cust
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         try {
-            val content = JSONObject(mList[position]).getJSONArray("content")
-            val picture_url = content.getJSONObject(0).getString("url")
+//            val content = JSONObject(mList[position]).getJSONArray("content")
+//            val picture_url = JSONObject(mList[position]).getJSONObject(0).getString("url")
             Picasso.get()
-                .load(picture_url)
+                .load(mList[position])
                 .into(holder.imageView);
         } catch (ex: FileNotFoundException) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
