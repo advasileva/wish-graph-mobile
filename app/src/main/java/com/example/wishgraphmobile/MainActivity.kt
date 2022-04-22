@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         public override fun run() {
-            val url =
-                "https://api.rarible.org/v0.1/items/byOwner?owner=ETHEREUM%3A$Wallet"
+            //val url = "https://api.rarible.org/v0.1/items/byOwner?owner=ETHEREUM%3A$Wallet"
+            val url = "http://5.63.159.42:8081/user_recommend/$Wallet"
             Log.println(Log.DEBUG, Log.DEBUG.toString(), url)
             val connection = URL(url).openConnection() as HttpURLConnection
             var text = "test"
