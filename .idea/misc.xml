@@ -5,13 +5,14 @@
       <map>
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/custom_btn.xml" value="0.1" />
+        <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/custom_card.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/custom_entry.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/custom_entry_new.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/custom_entry_pressed.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/entry_cursor.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
-        <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/layout/nft_layout.xml" value="0.1213768115942029" />
+        <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/layout/nft_layout.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Development/AndroidKotlin/wish-graph-mobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>

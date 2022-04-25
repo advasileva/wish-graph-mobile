@@ -7,31 +7,31 @@ android:layout_height="match_parent"
 android:background="@color/colorPrimary"
 tools:context=".MainActivity">
 
-<TextView
-    android:id="@+id/logo"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/logo"
-    android:layout_marginTop="30sp"
-    android:textAlignment="center"
-    android:textColor="@color/textColorPrimary"
-    android:textSize="30sp" />
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:text="@string/logo"
+        android:textAlignment="center"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="30sp" />
 
-<EditText
-    android:id="@+id/wallet_field"
-    android:layout_width="match_parent"
-    android:layout_height="45sp"
-    android:layout_below="@+id/logo"
-    android:layout_marginHorizontal="40sp"
-    android:layout_marginTop="30sp"
-    android:ems="10"
-    android:hint="@string/hint_wallet"
-    android:textColor="@color/textColorPrimary"
-    android:textColorHint="@color/textColorHint"
-    android:background="@drawable/custom_entry_new"
-    android:gravity="start"
-    android:singleLine="true"
-    android:textCursorDrawable="@drawable/entry_cursor" />
+    <EditText
+        android:id="@+id/wallet_field"
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:layout_below="@+id/logo"
+        android:layout_marginHorizontal="40sp"
+        android:layout_marginTop="30sp"
+        android:background="@drawable/custom_entry_new"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="@string/hint_wallet"
+        android:singleLine="true"
+        android:textColor="@color/textColorPrimary"
+        android:textColorHint="@color/textColorHint"
+        android:textCursorDrawable="@drawable/entry_cursor" />
 
 
     <Button
@@ -65,11 +65,12 @@ tools:context=".MainActivity">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/result"
-        android:layout_marginHorizontal="20sp"
+        android:layout_marginHorizontal="10sp"
         android:layout_marginTop="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/nft_layout" />
+        tools:listitem="@layout/nft_layout"
+        android:background="@drawable/custom_card"/>
 </RelativeLayout>
