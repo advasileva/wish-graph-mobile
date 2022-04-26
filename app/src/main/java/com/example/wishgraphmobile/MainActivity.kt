@@ -3,6 +3,8 @@ package com.example.wishgraphmobile
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -37,13 +39,16 @@ class MainActivity : AppCompatActivity() {
 
         progressBar?.setVisibility(View.INVISIBLE)
         find_btn?.setOnClickListener {
-            if (wallet_field?.text?.toString()?.trim()?.equals("")!!)
+            if (wallet_field?.text?.toString()?.trim()?.equals("")!!) {
                 Toast.makeText(this, "Enter address <3", Toast.LENGTH_LONG).show()
+                wallet_field?.requestFocus()
+            }
             else {
                 val thread = Thread(Runnable {
                     runOnUiThread(Runnable {
                         hideKeyboard()
                         progressBar?.setVisibility(View.VISIBLE)
+                        wallet_field?.clearFocus()
                         result_info?.text = ""
                     })
                     var json = "test"
@@ -75,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                     nft_array.getJSONObject(i)
                         .getJSONArray("nft")
                         .getJSONObject(0)
-                        .getString("url")
+                        .toString()
                 )
                 Log.println(Log.DEBUG, Log.DEBUG.toString(), data[0])
             }

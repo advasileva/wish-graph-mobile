@@ -1,11 +1,15 @@
 package com.example.wishgraphmobile
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.json.JSONObject
@@ -13,10 +17,12 @@ import java.io.FileNotFoundException
 
 class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+    var vcontext : Context? = null
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
+        vcontext = parent.context
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.nft_layout, parent, false)
 
@@ -28,17 +34,20 @@ class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<Cust
 
         try {
 //            val content = JSONObject(mList[position]).getJSONArray("content")
-//            val picture_url = JSONObject(mList[position]).getJSONObject(0).getString("url")
+            val picture_url = JSONObject(mList[position]).getString("url")
+            val picture_id = JSONObject(mList[position]).getString("id").substringAfter(":")
             Picasso.get()
-                .load(mList[position])
+                .load(picture_url)
                 .into(holder.imageView)
+            holder.imageView.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://rarible.com/token/$picture_id?tab=details"))
+                vcontext?.startActivity(i);
+            }
+            // holder.textView.text = picture_id
         } catch (ex: FileNotFoundException) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
         }
-
-        // sets the text to the textview from our itemHolder class
-        //holder.textView.text = "See"
-
     }
 
     // return the number of the items in the list
@@ -49,6 +58,6 @@ class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<Cust
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        //val textView: TextView = itemView.findViewById(R.id.textView)
+        val textView: TextView = itemView.findViewById(R.id.nft_title)
     }
 }
