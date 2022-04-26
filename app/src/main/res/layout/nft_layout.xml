@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardElevation="6dp"
-    android:background="@drawable/custom_card">
+    card_view:cardCornerRadius="15dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/custom_card">
+        android:cropToPadding="true"
+        android:scaleType="centerCrop">
 
         <ImageView
             android:id="@+id/imageview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:background="@drawable/custom_card"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imageview"
-            android:layout_marginTop="30sp"
-            android:text="122345"/>
+            android:layout_marginTop="10sp"
+            android:textColor="@color/textColorPrimary"
+            android:text="NFT title"
+            android:textAlignment="center"
+            android:textSize="20sp"/>
 
     </RelativeLayout>
 

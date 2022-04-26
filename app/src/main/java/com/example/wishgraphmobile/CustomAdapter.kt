@@ -31,7 +31,7 @@ class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<Cust
 //            val picture_url = JSONObject(mList[position]).getJSONObject(0).getString("url")
             Picasso.get()
                 .load(mList[position])
-                .into(holder.imageView);
+                .into(holder.imageView)
         } catch (ex: FileNotFoundException) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
         }
