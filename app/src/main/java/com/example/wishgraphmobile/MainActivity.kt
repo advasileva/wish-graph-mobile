@@ -5,9 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -37,13 +39,19 @@ class MainActivity : AppCompatActivity() {
         result_info = findViewById(R.id.result)
         progressBar = findViewById(R.id.progress_bar)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
+        }
+
         progressBar?.setVisibility(View.INVISIBLE)
         find_btn?.setOnClickListener {
             if (wallet_field?.text?.toString()?.trim()?.equals("")!!) {
                 Toast.makeText(this, "Enter address <3", Toast.LENGTH_LONG).show()
                 wallet_field?.requestFocus()
-            }
-            else {
+            } else {
                 val thread = Thread(Runnable {
                     runOnUiThread(Runnable {
                         hideKeyboard()
@@ -72,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         Log.println(Log.DEBUG, Log.DEBUG.toString(), json)
         val nft_array: JSONArray = JSONObject(json).getJSONArray("authors")
         val recyclerview = findViewById<RecyclerView>(R.id.nft_view)
+        recyclerview?.setNestedScrollingEnabled(false)
         recyclerview.layoutManager = LinearLayoutManager(this)
         val data = ArrayList<String>()
         try {
@@ -101,7 +110,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
@@ -115,7 +125,7 @@ class SimpleRunnable(_wallet: String) : Runnable {
     }
 
     public override fun run() {
-        //val url = "https://api.rarible.org/v0.1/items/byOwner?owner=ETHEREUM%3A$Wallet"
+        // val url = "https://api.rarible.org/v0.1/items/byOwner?owner=ETHEREUM%3A$Wallet"
         val url = "http://5.63.159.42:8081/user_recommend/$Wallet"
         Log.println(Log.DEBUG, Log.DEBUG.toString(), url)
         val connection = URL(url).openConnection() as HttpURLConnection

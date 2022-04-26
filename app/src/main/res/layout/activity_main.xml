@@ -1,85 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/colorPrimary"
-tools:context=".MainActivity"
-    android:id="@+id/loadingPanel">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/logo"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:text="@string/logo"
-        android:textAlignment="center"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
 
-    <EditText
-        android:id="@+id/wallet_field"
-        android:layout_width="match_parent"
-        android:layout_height="45sp"
-        android:layout_below="@+id/logo"
-        android:layout_marginHorizontal="40sp"
-        android:layout_marginTop="30sp"
-        android:background="@drawable/custom_entry_new"
-        android:ems="10"
-        android:gravity="start"
-        android:hint="@string/hint_wallet"
-        android:singleLine="true"
-        android:textColor="@color/textColorPrimary"
-        android:textColorHint="@color/textColorHint"
-        android:textCursorDrawable="@drawable/entry_cursor" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/loadingPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:fitsSystemWindows="true"
+            tools:context=".MainActivity">
 
+            <TextView
+                android:id="@+id/logo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70sp"
+                android:text="@string/logo"
+                android:textAlignment="center"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/btn_find"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/wallet_field"
-        android:layout_marginHorizontal="125sp"
-        android:layout_marginTop="30sp"
-        android:background="@drawable/custom_entry"
-        android:backgroundTint="@color/colorAccent"
-        android:padding="10dp"
-        android:text="@string/btn_find"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/wallet_field"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_below="@+id/logo"
+                android:layout_marginHorizontal="40sp"
+                android:layout_marginTop="40sp"
+                android:background="@drawable/custom_entry_new"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="@string/hint_wallet"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textColorHint="@color/textColorHint"
+                android:textCursorDrawable="@drawable/entry_cursor" />
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_find"
-        android:layout_marginHorizontal="40sp"
-        android:layout_marginTop="30sp"
-        android:text="@string/motivation"
-        android:textAlignment="center"
-        android:textColor="@color/textColorSecondary"
-        android:textSize="20sp" />
+            <Button
+                android:id="@+id/btn_find"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wallet_field"
+                android:layout_marginHorizontal="125sp"
+                android:layout_marginTop="40sp"
+                android:background="@drawable/custom_entry"
+                android:backgroundTint="@color/colorAccent"
+                android:padding="10dp"
+                android:text="@string/btn_find"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_find"
-        android:layout_marginTop="30sp"
-        android:layout_gravity = "center"
-        android:indeterminate="true" />
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_find"
+                android:layout_marginHorizontal="40sp"
+                android:layout_marginTop="40sp"
+                android:text="@string/motivation"
+                android:textAlignment="center"
+                android:textColor="@color/textColorSecondary"
+                android:textSize="20sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/nft_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_find"
-        android:layout_marginHorizontal="10sp"
-        android:layout_marginTop="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/nft_layout"/>
-</RelativeLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_find"
+                android:layout_gravity="center"
+                android:layout_marginTop="40sp"
+                android:indeterminate="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nft_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_find"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginTop="40sp"
+                android:clipToPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/nft_layout" />
+
+        </RelativeLayout>
+    </TableLayout>
+</ScrollView>
