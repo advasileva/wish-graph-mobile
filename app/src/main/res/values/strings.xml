@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Wish NFT</string>
-    <string name="logo">NFT you wish</string>
+    <string name="logo">NFT you&#160;</string>
+    <string name="logo_y">wish</string>
     <string name="hint_wallet">Enter blockchain address</string>
     <string name="btn_find">Find NFT</string>
-    <string name="motivation">Connect wallet to see recommendations</string>
+    <string name="motivation">Log in to see recommendations</string>
 </resources>

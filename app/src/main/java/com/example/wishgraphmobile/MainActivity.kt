@@ -68,8 +68,15 @@ class MainActivity : AppCompatActivity() {
                     json = simpleRunnable.Text
                     json = "{\"authors\": $json\n}"
                     runOnUiThread(Runnable {
-                        Support(json)
+                        try {
+                            Support(json)
+                        } catch (ex: Exception) {
+                            Toast.makeText(this, "Server-side error", Toast.LENGTH_LONG).show()
+                        } finally {
+                            progressBar?.setVisibility(View.INVISIBLE)
+                        }
                     })
+
                 })
                 thread.start()
             }
@@ -98,7 +105,6 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = CustomAdapter(data)
         recyclerview.adapter = adapter
-        progressBar?.setVisibility(View.INVISIBLE)
     }
 
     fun Fragment.hideKeyboard() {
@@ -119,6 +125,7 @@ class MainActivity : AppCompatActivity() {
 class SimpleRunnable(_wallet: String) : Runnable {
     val Wallet: String
     var Text: String = ""
+    var IsSuccess: Boolean = true
 
     init {
         Wallet = _wallet
@@ -136,8 +143,9 @@ class SimpleRunnable(_wallet: String) : Runnable {
                 it.reader().use() { reader -> reader.readText() }
             }
             Text = text
-        } catch (ex: FileNotFoundException) {
+        } catch (ex: Exception) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
+            IsSuccess = false
         } finally {
             connection.disconnect()
         }
