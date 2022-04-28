@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -35,16 +36,23 @@ class CustomAdapter(private val mList: List<String>) : RecyclerView.Adapter<Cust
         try {
 //            val content = JSONObject(mList[position]).getJSONArray("content")
             val picture_url = JSONObject(mList[position]).getString("url")
+            val picture_title = JSONObject(mList[position]).getString("title")
             val picture_id = JSONObject(mList[position]).getString("id").substringAfter(":")
+            if (picture_url.isNullOrEmpty()) {
+                mList
+            }
             Picasso.get()
                 .load(picture_url)
                 .into(holder.imageView)
             holder.imageView.setOnClickListener {
-                val i = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://rarible.com/token/$picture_id?tab=details"))
-                vcontext?.startActivity(i);
+                val i = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://rarible.com/token/$picture_id?tab=details")
+                )
+                vcontext?.startActivity(i)
             }
-            // holder.textView.text = picture_id
+
+            holder.textView.text = picture_title
         } catch (ex: FileNotFoundException) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
         }

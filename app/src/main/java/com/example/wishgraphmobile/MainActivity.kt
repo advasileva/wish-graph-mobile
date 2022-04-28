@@ -2,13 +2,15 @@ package com.example.wishgraphmobile
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -25,6 +27,7 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
 
+    private var activity: Activity? = null
     private var wallet_field: EditText? = null
     private var find_btn: Button? = null
     private var result_info: TextView? = null
@@ -66,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                     threadWithRunnable.start()
                     threadWithRunnable.join()
                     json = simpleRunnable.Text
-                    json = "{\"authors\": $json\n}"
                     runOnUiThread(Runnable {
                         try {
                             Support(json)
@@ -89,16 +91,33 @@ class MainActivity : AppCompatActivity() {
         val recyclerview = findViewById<RecyclerView>(R.id.nft_view)
         recyclerview?.setNestedScrollingEnabled(false)
         recyclerview.layoutManager = LinearLayoutManager(this)
+        var set = mutableSetOf("")
         val data = ArrayList<String>()
         try {
             for (i in 0..(nft_array.length() - 1)) {
-                data.add(
-                    nft_array.getJSONObject(i)
-                        .getJSONArray("nft")
-                        .getJSONObject(0)
+                val array = nft_array.getJSONObject(i)
+                    .getJSONArray("nft")
+                for (j in 0..(array.length() - 1)) {
+                    val element = array
+                        .getJSONObject(j)
                         .toString()
-                )
-                Log.println(Log.DEBUG, Log.DEBUG.toString(), data[0])
+                    val url = JSONObject(element).getString("url")
+                    val title = JSONObject(element).getString("title")
+                    if (!set.contains(title)) {
+                        set.add(title)
+                        if (url != "null" && !url.contains("metadata")) {
+                            data.add(element)
+                            Log.println(
+                                Log.DEBUG,
+                                Log.DEBUG.toString(), url
+                            )
+                        } else {
+                            Log.println(Log.DEBUG, Log.DEBUG.toString(), "DELETED")
+                        }
+                    } else {
+                        Log.println(Log.DEBUG, Log.DEBUG.toString(), "ALREADY EXIST")
+                    }
+                }
             }
         } catch (ex: FileNotFoundException) {
             Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
@@ -120,34 +139,33 @@ class MainActivity : AppCompatActivity() {
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
-}
 
-class SimpleRunnable(_wallet: String) : Runnable {
-    val Wallet: String
-    var Text: String = ""
-    var IsSuccess: Boolean = true
+    class SimpleRunnable(_wallet: String) : Runnable {
+        val Wallet: String
+        var Text: String = ""
+        var IsSuccess: Boolean = true
 
-    init {
-        Wallet = _wallet
-    }
+        init {
+            Wallet = _wallet
+        }
 
-    public override fun run() {
-        // val url = "https://api.rarible.org/v0.1/items/byOwner?owner=ETHEREUM%3A$Wallet"
-        val url = "http://5.63.159.42:8081/user_recommend/$Wallet"
-        Log.println(Log.DEBUG, Log.DEBUG.toString(), url)
-        val connection = URL(url).openConnection() as HttpURLConnection
-        var text = "test"
-        try {
-            connection.connect()
-            text = connection.inputStream.use {
-                it.reader().use() { reader -> reader.readText() }
+        public override fun run() {
+            val url = "http://185.46.8.253:8080/v0.1/recommend?walletToken=ETHEREUM:$Wallet"
+            Log.println(Log.DEBUG, Log.DEBUG.toString(), url)
+            val connection = URL(url).openConnection() as HttpURLConnection
+            var text = "test"
+            try {
+                connection.connect()
+                text = connection.inputStream.use {
+                    it.reader().use() { reader -> reader.readText() }
+                }
+                Text = text
+            } catch (ex: Exception) {
+                Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
+                IsSuccess = false
+            } finally {
+                connection.disconnect()
             }
-            Text = text
-        } catch (ex: Exception) {
-            Log.println(Log.DEBUG, Log.DEBUG.toString(), "CATCHED")
-            IsSuccess = false
-        } finally {
-            connection.disconnect()
         }
     }
 }
